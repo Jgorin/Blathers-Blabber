@@ -1,4 +1,5 @@
 # README
+[![Codeship Status for Jgorin/Blathers-Blabber](https://app.codeship.com/projects/9edc125d-980e-4a43-8987-1fff786abacb/status?branch=master)](https://app.codeship.com/projects/442458)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
