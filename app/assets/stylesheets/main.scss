@@ -1,0 +1,17 @@
+@import 'color';
+
+@font-face {
+  font-family: 'Fink-heavy';    
+  src: url('FinkHeavy.otf');
+}
+
+h1, h2, h3 {
+  font-family: 'Fink-heavy';
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: $text-color;
+  background-color: $background;
+}
+
