@@ -4,6 +4,7 @@ class CreateAnimals < ActiveRecord::Migration[5.2]
       t.string :name, null: false
       t.text :body, null: false
       t.float :rating, default: 0, null: false
+      t.timestamps null: false
     end
   end
 end
