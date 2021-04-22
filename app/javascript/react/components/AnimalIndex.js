@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
+import AnimalTile from './AnimalTile'
 const AnimalIndex = (props) => {
   const [animals, setAnimals] = useState([])
-  
+
   const fetchAnimals = async () => {
     try {
       const response = await fetch("/api/v1/animals")
@@ -18,24 +19,25 @@ const AnimalIndex = (props) => {
     }
   }
 
-
   useEffect(() => {
     fetchAnimals()
   }, [])
 
   const animalList = animals.map((animal) => {
     return (
-      <div key={animal.id}>
-        {animal.name}
+      <div className="cell small-6 medium-4">
+        <AnimalTile key={animal.id} id={animal.id} name={animal.name} />
       </div>
     )
   })
 
   return (
-    <>
-    <h1>Animals</h1>
-    {animalList}
-    </>
+    <div className="grid-container">
+      <h1>Animals</h1>
+      <div className="grid-x grid-margin-x">
+        {animalList}
+      </div>
+    </div>
   )
 }
 
