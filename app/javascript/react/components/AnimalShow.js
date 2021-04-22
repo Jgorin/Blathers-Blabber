@@ -17,11 +17,11 @@ const AnimalShow = (props) => {
       console.error(`Error in Fetch: ${error.message}`)
     }
   }
-  
+
   useEffect(() => {
     fetchAnimal()
   }, [])
-   
+
   return (
     <div>
       <h1>{animal.name}</h1>

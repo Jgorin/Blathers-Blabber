@@ -1,0 +1,17 @@
+<%= form_for @animal do |f| %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :body, "Description" %>
+    <%= f.text_area :body %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add Animal"%>
+  </div>
+
+<% end %>
