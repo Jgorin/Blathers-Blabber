@@ -25,9 +25,7 @@ const AnimalIndex = (props) => {
 
   const animalList = animals.map((animal) => {
     return (
-      <div key={animal.id} className="cell small-6 medium-4">
-        <AnimalTile id={animal.id} name={animal.name} />
-      </div>
+      <AnimalTile key={animal.id} id={animal.id} name={animal.name} />
     )
   })
 

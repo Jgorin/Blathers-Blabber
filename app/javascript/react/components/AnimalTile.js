@@ -4,14 +4,16 @@ import {Link} from 'react-router-dom'
 
 const AnimalTile = (props) => {
   return (
-    <Link to={`/animals/${props.id}`}>
-      <div className="card animal-card">
-        <img src={Bunny} alt="animal image"/>
-        <div className="card-section animal-card-section">
-          <h3>{props.name}</h3>
+    <div className="cell small-6 medium-4">
+      <Link to={`/animals/${props.id}`}>
+        <div className="card animal-card">
+          <img src={Bunny} alt="animal image"/>
+          <div className="card-section animal-card-section">
+            <h3>{props.name}</h3>
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   )
 }
 
