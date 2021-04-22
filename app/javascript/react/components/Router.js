@@ -8,9 +8,8 @@ const Router = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={AnimalIndex}/>
-        <Route exact path="/animals" component={AnimalIndex}/>
         <Route exact path="/animals/:id" component={AnimalShow}/>
+        <Route path="/" component={AnimalIndex}/>
       </Switch>
     </BrowserRouter>
   )
