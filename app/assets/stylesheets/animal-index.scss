@@ -1,0 +1,17 @@
+@import 'color';
+
+.animal-card {
+  border: 5px solid $ac-green !important;
+  border-radius: 15px !important;
+  transition: border 0.1s ease-in;
+  cursor: pointer;
+
+  &:hover {
+    border: 8px solid $ac-yellow !important;
+  }
+}
+
+.animal-card-section {
+  background-color: $background !important;
+  color: $ac-brown !important;
+}
