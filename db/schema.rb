@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2021_04_21_141639) do
     t.string "name", null: false
     t.text "body", null: false
     t.float "rating", default: 0.0, null: false
+    t.string "photo_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
