@@ -36,7 +36,6 @@ const AnimalShow = (props) => {
       <h1>{animal.name}</h1>
       <p>{animal.rating}</p>
       <p>{animal.body}</p>
-      <p>Testing the rating: {rating}</p>
       <AnimalReviewForm submittedHandler={submittedHandler}/>
     </div>
   )

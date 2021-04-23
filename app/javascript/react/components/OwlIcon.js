@@ -1,31 +1,18 @@
 import React from 'react'
-import Blather from '../../../assets/images/blathers_icon.png'
+import Blathers from '../../../assets/images/blathers_icon.png'
+
 const OwlIcon = (props) => {
-
-  let classContent
-  let selectStatus
-
-  const selectRating = () => {
-    props.setRating(props.id)
-
-    if (rating === props.id) {
-      selectStatus = true
-    } else {
-      selectedStatus = false
-    }
-  }
-
-  if (selectStatus === true) {
-    classContent = 'selected'
-  }
-
+  const { id, keyNumber, handleSetRating, className } = props
+  
   return (
-    <img
-      src={Blather} 
-      className={classContent}
-      id={props.id}
-      onClick={selectRating} 
-    />
+    <div key={keyNumber}>
+      <img
+        src={Blathers} 
+        className={className}
+        id={id}
+        onClick={handleSetRating} 
+      />
+    </div>
   )
 }
 
