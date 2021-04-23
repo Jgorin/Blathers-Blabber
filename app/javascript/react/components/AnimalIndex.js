@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AnimalTile from './AnimalTile'
+
 const AnimalIndex = (props) => {
   const [animals, setAnimals] = useState([])
 
@@ -24,8 +25,8 @@ const AnimalIndex = (props) => {
   }, [])
 
   const animalList = animals.map((animal) => {
-    return (
-      <AnimalTile key={animal.id} id={animal.id} name={animal.name} />
+    return(
+      <AnimalTile key={animal.id} id={animal.id} name={animal.name} photo={animal.photo_path.url} />
     )
   })
 
