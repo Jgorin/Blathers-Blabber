@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import AnimalTile from './AnimalTile'
+import IndexBlathers from '../../../assets/images/index-blathers.png'
+
 const AnimalIndex = (props) => {
   const [animals, setAnimals] = useState([])
 
@@ -9,7 +11,7 @@ const AnimalIndex = (props) => {
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
-        throw(error)
+        throw (error)
       }
       const responseBody = await response.json()
       setAnimals(responseBody)
@@ -31,7 +33,15 @@ const AnimalIndex = (props) => {
 
   return (
     <div className="grid-container">
-      <h1>Animals</h1>
+      <div className="grid-x grid-margin-x">
+        <div className="cell small-6 medium-4">
+          <img src={IndexBlathers} alt="blathers" className="index-blathers"/>
+        </div>
+        <div className="cell small-6 medium-8">
+          <h1>Welcome to Blathers' Blabber!</h1>
+          <h3>The best animal ratings in town.</h3>
+        </div>
+      </div>
       <div className="grid-x grid-margin-x">
         {animalList}
       </div>
