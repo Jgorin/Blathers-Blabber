@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react"
+import AnimalReviewForm from "./AnimalReviewForm"
+
 const AnimalShow = (props) => {
 
   const [animal, setAnimal] = useState({})
+  const [reviews, setReviews] = useState([])
+  const [rating, setRating] = useState(null)
+
+  const submittedHandler = (review, rating) => {
+    setReviews([...reviews, review])
+    setRating(rating)
+  }
 
   const fetchAnimal = async () => {
     try {
@@ -27,6 +36,8 @@ const AnimalShow = (props) => {
       <h1>{animal.name}</h1>
       <p>{animal.rating}</p>
       <p>{animal.body}</p>
+      <p>Testing the rating: {rating}</p>
+      <AnimalReviewForm submittedHandler={submittedHandler}/>
     </div>
   )
 }
