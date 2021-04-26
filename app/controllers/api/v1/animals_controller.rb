@@ -3,6 +3,10 @@ class Api::V1::AnimalsController < ApiController
     render json: Animal.all
   end
   def show
-    render json: Animal.find(params[:id])
+    response = {}
+    animal = Animal.find(params[:id])
+    response["animal"] = animal
+    response["reviews"] = animal.reviews
+    render json: response
   end
 end
