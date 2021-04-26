@@ -1,12 +1,12 @@
 @import 'color';
 
 @font-face {
-  font-family: 'Fink-heavy';    
-  src: url('FinkHeavy.otf');
+  font-family: 'FinkHeavy';    
+  src: asset-path(FinkHeavy) format("opentype");
 }
 
 h1, h2, h3 {
-  font-family: 'Fink-heavy';
+  font-family: 'FinkHeavy';
 }
 
 body {
