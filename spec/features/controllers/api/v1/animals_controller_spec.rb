@@ -14,13 +14,25 @@ RSpec.describe Api::V1::AnimalsController, type: :controller do
     photo_path: "./spec/support/images/photo.png"
   ) }
 
+  let!(:user1) {User.create(
+    username: "josh",
+    password: "111111",
+    email: "jgorin@conncoll.edu"
+  )}
+
+  let!(:review) {Review.create(
+    title: "bad",
+    description: "soo bad",
+    rating: 1,
+    animal: first_animal,
+    user: user1
+  )}
+
 
   describe "GET#index" do
     it "should return a list of all the animals" do
-
       get :index
       returned_json = JSON.parse(response.body)
-
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
 
@@ -42,13 +54,12 @@ RSpec.describe Api::V1::AnimalsController, type: :controller do
 
       get :show, params: {id: first_animal.id}
       returned_json = JSON.parse(response.body)
-
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
-
-      expect(returned_json["name"]).to eq first_animal.name
-      expect(returned_json["body"]).to eq first_animal.body
-      expect(returned_json["rating"]).to eq first_animal.rating
+      expect(returned_json["animal"]["name"]).to eq first_animal.name
+      expect(returned_json["animal"]["body"]).to eq first_animal.body
+      expect(returned_json["animal"]["rating"]).to eq first_animal.rating
+      expect(returned_json["reviews"][0]["description"]).to eq review.description
     end
   end
 end
