@@ -55,3 +55,4 @@ gem 'foundation-rails', '~> 6.5'
 gem 'webpacker', '~> 3.3'
 
 gem 'carrierwave'
+gem 'fog'

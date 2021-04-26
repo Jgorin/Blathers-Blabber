@@ -4,12 +4,14 @@ RSpec.describe Api::V1::AnimalsController, type: :controller do
   let!(:first_animal) { Animal.create(
     name: "hippo",
     body: "fat",
-    rating: 5.0
+    rating: 5.0,
+    photo_path: "./spec/support/images/photo.png"
   ) }
   let!(:second_animal) { Animal.create(
     name: "penguin",
     body: "frosty",
-    rating: 4.8
+    rating: 4.8,
+    photo_path: "./spec/support/images/photo.png"
   ) }
 
 

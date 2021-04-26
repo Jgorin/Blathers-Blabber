@@ -6,6 +6,7 @@ feature 'user adds a new animal' do
 
     fill_in "Name", with: "Panda"
     fill_in "Description", with: "cute"
+    attach_file :animal_photo_path, "#{Rails.root}/spec/support/images/photo.png"
 
     prev_count = Animal.count
 
