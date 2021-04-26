@@ -5,11 +5,9 @@ const AnimalShow = (props) => {
 
   const [animal, setAnimal] = useState({})
   const [reviews, setReviews] = useState([])
-  const [rating, setRating] = useState(null)
 
-  const submittedHandler = (review, rating) => {
-    setReviews([...reviews, review])
-    setRating(rating)
+  const submittedHandler = (review) => {
+    postReview(review)
   }
 
   const fetchAnimal = async () => {
@@ -25,6 +23,31 @@ const AnimalShow = (props) => {
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
+  }
+
+  const postReview = async (formPayload) => {
+    try {
+      let animalId = props.match.params.id
+      const response = await fetch(`/api/v1/animals/${animalId}/reviews`, {
+        credentials: "same-origin",
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formPayload)
+      })
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`
+        throw new Error(errorMessage)
+      }
+      const newReview = await response.json()
+      setAnimalReviews(
+        animalReviews.concat(newReview)
+      )
+    } catch (error) {
+        console.error(`Error in Fetch: ${error.message}`)
+      }
   }
 
   useEffect(() => {

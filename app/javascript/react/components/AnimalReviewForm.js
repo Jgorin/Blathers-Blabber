@@ -1,22 +1,42 @@
 import React, { useState, useEffect } from "react"
 import OwlIcon from "./OwlIcon"
+import _ from 'lodash'
+import ErrorList from "./ErrorList"
 
 const AnimalReviewForm = (props) => {
-
   const [animalReview, setAnimalReview] = useState({
     title: "",
-    description: ""
+    description: "",
+    rating: 0
   })
+
+  const [errors, setErrors] = useState({})
 
   const clearForm = event => {
     event.preventDefault()
     setAnimalReview({
       title: "",
-      description: ""  
+      description: "",
+      rating: 0
     })
+    setErrors({})
   }
 
-  const [rating, setRating] = useState(null)
+  const validForSubmission = () => {
+    let submitErrors = {}
+    const requiredFields = ["title", "description"]
+    requiredFields.forEach(field => {
+      if (animalReview[field].trim() === "") {
+        submitErrors = {
+          ...submitErrors,
+          [field]: "is blank"
+        }
+      }
+    })
+  
+    setErrors(submitErrors)
+    return _.isEmpty(submitErrors)
+  }
 
   const handleInputChange = event => {
     setAnimalReview({
@@ -27,50 +47,31 @@ const AnimalReviewForm = (props) => {
 
   const onSubmitHandler = event => {
     event.preventDefault()
-    props.submittedHandler(animalReview, rating)
+    props.submittedHandler(animalReview)
   }
 
   let owlIcons = []
   for(let i = 1; i <= 5; i++){
 
     const handleSetRating = () => {
-      setRating(i)
+      setAnimalReview({
+        ...animalReview,
+        ["rating"]: i
+      })
     }
 
-    owlIcons.push(<OwlIcon 
-      id={i} 
-      keyNumber={i} 
-      handleSetRating={handleSetRating} 
-      className={i <= rating ? "head selected" : "head"}
+    owlIcons.push(<OwlIcon
+      id={i}
+      keyNumber={i}
+      handleSetRating={handleSetRating}
+      className={i <= animalReview.rating ? "head selected" : "head"}
     />)
-  }
-
-  const postReview = async (formPayload) => {
-    try {
-      let animalId = props.match.params.id
-      const response = await fetch(`/api/v1/animals/${animalId}/reviews`, {
-        credentials: "same-origin",
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(formPayload)
-      })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        throw new Error(errorMessage)
-      }
-      // const newReview = await response.json()
-    } catch (error) {
-        console.error(`Error in Fetch: ${error.message}`)
-      }
   }
 
   return (
     <>
       <form className="form" onSubmit={onSubmitHandler} >
-
+        <ErrorList errors={errors} />
         <div className="grid-container">
           <div className="grid-x">
             {owlIcons}
@@ -83,10 +84,10 @@ const AnimalReviewForm = (props) => {
             type="text"
             name="title"
             onChange={handleInputChange}
-            value={animalReview.title}  
+            value={animalReview.title}
           />
         </label>
-        
+
         <label>
           Description:
           <textarea
@@ -95,7 +96,7 @@ const AnimalReviewForm = (props) => {
             value={animalReview.description}
           />
         </label>
-        
+
         <div className="button-group">
           <button className="button" onClick={clearForm}>Clear</button>
           <input className="button" type="submit" value="Submit" />
