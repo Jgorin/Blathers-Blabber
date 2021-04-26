@@ -10,6 +10,11 @@
     <%= f.text_area :body %>
   </div>
 
+  <div class="field">
+    <%= f.label :photo_path, "Photo" %>
+    <%= f.file_field :photo_path %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Add Animal"%>
   </div>
