@@ -16,10 +16,10 @@ const ReviewList = props => {
   })
 
   return(
-    <ul>
+    <div>
       <h2>Reviews:</h2>
       {reviewList}
-    </ul>
+    </div>
   )
 }
 

@@ -3,8 +3,12 @@ import ReviewList from "./reviews/ReviewList"
 
 const AnimalShow = (props) => {
 
-  const [animal, setAnimal] = useState({})
-  const [reviews, setReviews] = useState([])
+  const [animal, setAnimal] = useState({
+    name: "",
+    body: "",
+    rating: 0,
+    reviews: []
+  })
 
   const fetchAnimal = async () => {
     try {
@@ -15,8 +19,10 @@ const AnimalShow = (props) => {
         throw new Error(errorMessage)
       }
       const responseBody = await response.json()
-      setAnimal(responseBody.animal)
-      setReviews(responseBody.reviews)
+      setAnimal({
+        ...responseBody.animal,
+        ["reviews"]: responseBody.reviews
+      })
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`)
     }
@@ -31,7 +37,7 @@ const AnimalShow = (props) => {
       <h1>{animal.name}</h1>
       <p>{animal.rating}</p>
       <p>{animal.body}</p>
-      <ReviewList reviews={reviews}/>
+      <ReviewList reviews={animal.reviews}/>
     </div>
   )
 }

@@ -56,7 +56,6 @@ RSpec.describe Api::V1::AnimalsController, type: :controller do
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
       expect(response.content_type).to eq("application/json")
-      # binding.pry
       expect(returned_json["animal"]["name"]).to eq first_animal.name
       expect(returned_json["animal"]["body"]).to eq first_animal.body
       expect(returned_json["animal"]["rating"]).to eq first_animal.rating
