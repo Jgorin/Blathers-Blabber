@@ -11,6 +11,7 @@ const ReviewList = props => {
         title={review.title} 
         description={review.description} 
         rating={review.rating}
+        user="placeholder person"
       />
     )
   })

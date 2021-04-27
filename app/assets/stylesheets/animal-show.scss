@@ -1,0 +1,19 @@
+@import 'color';
+
+.animal-photo {
+  border: 5px solid $ac-brown !important;
+  border-radius: 15px !important;
+  max-height: 15em;
+  display: block;
+  margin: 2em 1em;
+}
+
+.ratings-container {
+  margin-right: 2em;
+  padding: 1em;
+}
+
+.review-avatar {
+  border-radius: 50%;
+  width: 3em;
+}
