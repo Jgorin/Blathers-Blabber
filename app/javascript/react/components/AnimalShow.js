@@ -1,76 +1,75 @@
-import React, { useState, useEffect } from "react"
-import AnimalReviewForm from "./AnimalReviewForm"
-import ReviewList from "./reviews/ReviewList"
+import React, { useState, useEffect } from "react";
+import AnimalReviewForm from "./AnimalReviewForm";
+import ReviewList from "./reviews/ReviewList";
 
 const AnimalShow = (props) => {
-
   const [animal, setAnimal] = useState({
     name: "",
     body: "",
     rating: 0,
-    reviews: []
-  })
+    reviews: [],
+  });
+  const [userId, setUserId] = useState(null);
 
   const submittedHandler = (review) => {
-    postReview(review)
-  }
+    postReview(review);
+  };
 
   const fetchAnimal = async () => {
     try {
-      let animalId = props.match.params.id
-      const response = await fetch(`/api/v1/animals/${animalId}`)
+      let animalId = props.match.params.id;
+      const response = await fetch(`/api/v1/animals/${animalId}`);
       if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        throw new Error(errorMessage)
+        const errorMessage = `${response.status} (${response.statusText})`;
+        throw new Error(errorMessage);
       }
-      const responseBody = await response.json()
+      const responseBody = await response.json();
       setAnimal({
         ...responseBody.animal,
-        ["reviews"]: responseBody.reviews
-      })
+        ["reviews"]: responseBody.reviews,
+      });
+      setUserId(responseBody.current_user_id);
     } catch (error) {
-      console.error(`Error in Fetch: ${error.message}`)
+      console.error(`Error in Fetch: ${error.message}`);
     }
-  }
+  };
 
   const postReview = async (formPayload) => {
     try {
-      let animalId = props.match.params.id
+      let animalId = props.match.params.id;
       const response = await fetch(`/api/v1/animals/${animalId}/reviews`, {
         credentials: "same-origin",
         method: "POST",
         headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
+          Accept: "application/json",
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formPayload)
-      })
+        body: JSON.stringify({ newReview: formPayload, userId: userId }),
+      });
       if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        throw new Error(errorMessage)
+        const errorMessage = `${response.status} (${response.statusText})`;
+        throw new Error(errorMessage);
       }
-      const newReview = await response.json()
-      setAnimalReviews(
-        animalReviews.concat(newReview)
-      )
+      const newReview = await response.json();
+      setAnimal({ ...animal, ["reviews"]: animal.reviews.concat(newReview) });
     } catch (error) {
-        console.error(`Error in Fetch: ${error.message}`)
-      }
-  }
+      console.error(`Error in Fetch: ${error.message}`);
+    }
+  };
 
   useEffect(() => {
-    fetchAnimal()
-  }, [])
+    fetchAnimal();
+  }, []);
 
   return (
     <div>
       <h1>{animal.name}</h1>
       <p>{animal.rating}</p>
       <p>{animal.body}</p>
-      <AnimalReviewForm submittedHandler={submittedHandler}/>
-      <ReviewList reviews={animal.reviews}/>
+      <AnimalReviewForm submittedHandler={submittedHandler} />
+      <ReviewList reviews={animal.reviews} />
     </div>
-  )
-}
+  );
+};
 
-export default AnimalShow
+export default AnimalShow;

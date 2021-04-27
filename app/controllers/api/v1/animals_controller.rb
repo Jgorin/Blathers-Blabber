@@ -7,6 +7,7 @@ class Api::V1::AnimalsController < ApiController
     animal = Animal.find(params[:id])
     response["animal"] = animal
     response["reviews"] = animal.reviews
+    response["current_user_id"] = session[:current_user_id]
     render json: response
   end
 end
