@@ -8,4 +8,8 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:username, :email, :password, :profile_photo)}
   end
+
+  def after_sign_in_path_for(resource)
+    animals_path
+  end
 end
