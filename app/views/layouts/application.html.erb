@@ -9,12 +9,10 @@
 <body>
   
   <nav class="top-bar">
-    <div>
-      <h1>
-        <%= image_tag("blathers-navbar.png", :class => "blathers-icon", :alt => "blathers") %>
-        <a href="/">BlathersBlabber</a>
-      </h1>
-    </div>
+    <h1>
+      <%= image_tag("blathers-navbar.png", :class => "blathers-icon", :alt => "blathers") %>
+      <a href="/">BlathersBlabber</a>
+    </h1>
     <section class="top-bar-section">
       <ul class="right">
         <%- if current_user -%>
