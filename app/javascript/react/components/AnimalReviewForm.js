@@ -27,6 +27,11 @@ const AnimalReviewForm = (props) => {
   const onSubmitHandler = (event) => {
     event.preventDefault();
     props.submittedHandler(animalReview);
+    setAnimalReview({
+      title: "",
+      description: "",
+      rating: 0,
+    });
   };
 
   let owlIcons = [];
@@ -40,8 +45,8 @@ const AnimalReviewForm = (props) => {
 
     owlIcons.push(
       <OwlIcon
+        key={i}
         id={i}
-        keyNumber={i}
         handleSetRating={handleSetRating}
         className={i <= animalReview.rating ? "head selected" : "head"}
       />
@@ -51,7 +56,6 @@ const AnimalReviewForm = (props) => {
   return (
     <>
       <form className="form" onSubmit={onSubmitHandler}>
-        {/* <ErrorList errors={errors} /> */}
         <div className="grid-container">
           <div className="grid-x">{owlIcons}</div>
         </div>

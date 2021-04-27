@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    session[:current_user_id] = current_user.id
     animals_path
   end
 end

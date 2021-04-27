@@ -44,7 +44,7 @@ const AnimalShow = (props) => {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ newReview: formPayload, userId: userId }),
+        body: JSON.stringify(formPayload)
       });
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`;

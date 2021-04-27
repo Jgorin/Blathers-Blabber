@@ -2,15 +2,14 @@ import React from 'react'
 import Blathers from '../../../assets/images/blathers_icon.png'
 
 const OwlIcon = (props) => {
-  const { id, keyNumber, handleSetRating, className } = props
-  
+  const { id, handleSetRating, className } = props
+
   return (
-    <div key={keyNumber}>
+    <div>
       <img
-        src={Blathers} 
+        src={Blathers}
         className={className}
-        id={id}
-        onClick={handleSetRating} 
+        onClick={handleSetRating}
       />
     </div>
   )
