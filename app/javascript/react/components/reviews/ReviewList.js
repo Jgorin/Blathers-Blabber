@@ -7,7 +7,12 @@ const ReviewList = (props) => {
   const deleteReview = async (reviewId) => {
     try {
       const response = await fetch(`/api/v1/animals/${animal}/reviews/${reviewId}`, {
-        method: 'DELETE'
+        credentials: "same-origin",
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
       })
     } catch(err) {
       console.error(err)

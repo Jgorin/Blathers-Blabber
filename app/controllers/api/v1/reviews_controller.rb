@@ -15,7 +15,8 @@ class Api::V1::ReviewsController < ApiController
   end
 
   def destroy
-    binding.pry
+    review = Review.find(params[:id])
+    review.destroy
   end
 
   private
