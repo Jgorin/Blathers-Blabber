@@ -76,7 +76,7 @@ const AnimalShow = (props) => {
           <AnimalReviewForm submittedHandler={submittedHandler} />
         </div>
         <div className="cell small-12 medium-6">
-          <ReviewList reviews={animal.reviews}/>
+          <ReviewList reviews={animal.reviews} animal={animal.id}/>
         </div>
       </div>
     </div>

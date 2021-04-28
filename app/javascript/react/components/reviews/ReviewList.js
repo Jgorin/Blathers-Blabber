@@ -2,7 +2,17 @@ import React from "react";
 import ReviewTile from "./ReviewTile";
 
 const ReviewList = (props) => {
-  const { reviews } = props;
+  const { reviews, animal } = props;
+
+  const deleteReview = async (reviewId) => {
+    try {
+      const response = await fetch(`/api/v1/animals/${animal}/reviews/${reviewId}`, {
+        method: 'DELETE'
+      })
+    } catch(err) {
+      console.error(err)
+    }
+  }
 
   let reviewList = reviews.map((review) => {
     return (
@@ -11,6 +21,7 @@ const ReviewList = (props) => {
         title={review.title}
         description={review.description}
         rating={review.rating}
+        deleteReview={() => deleteReview(review.id)}
         user="placeholder person"
       />
     );
