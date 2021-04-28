@@ -7,7 +7,7 @@ const AnimalTile = (props) => {
     <div className="cell small-6 medium-4">
       <Link to={`/animals/${props.id}`}>
         <div className="card animal-card">
-          <img src={props.photo} alt="animal image"/>
+          <img className="animal-card-image" src={props.photo} alt="animal image"/>
           <div className="card-section animal-card-section">
             <h3>{props.name}</h3>
           </div>

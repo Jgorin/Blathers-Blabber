@@ -54,9 +54,11 @@ const AnimalReviewForm = (props) => {
   }
 
   return (
-    <>
+    <div className="callout review-form">
+      <h3>Write your Review</h3>
       <form className="form" onSubmit={onSubmitHandler}>
         <div className="grid-container">
+          <p>Give it an owl rating</p>
           <div className="grid-x">{owlIcons}</div>
         </div>
 
@@ -86,7 +88,7 @@ const AnimalReviewForm = (props) => {
           <input className="button" type="submit" value="Submit" />
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

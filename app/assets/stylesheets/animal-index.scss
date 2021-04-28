@@ -5,10 +5,16 @@
   border-radius: 15px !important;
   transition: border 0.1s ease-in;
   cursor: pointer;
+  height: 20em !important;
+  text-align: center;
 
   &:hover {
     border: 8px solid $ac-yellow !important;
   }
+}
+
+.animal-card-image {
+  max-height: 15em;
 }
 
 .animal-card-section {
@@ -22,3 +28,9 @@
   margin: 0 auto;
 }
 
+.new-animals {
+  margin: 0 auto;
+  display: block;
+  width: 15em;
+  padding: 1em;
+}

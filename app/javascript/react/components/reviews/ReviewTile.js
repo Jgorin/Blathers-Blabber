@@ -1,15 +1,20 @@
-import React from "react";
+import React from "react"
+import VillagerIcon from "../../../../assets/images/villager.png"
 
-const ReviewTile = (props) => {
-  const { title, description, rating } = props;
+const ReviewTile = props => {
+  const { title, description, rating, user } = props
 
-  return (
-    <li>
-      <h2>{title}</h2>
+  return(
+    <div className="callout">
+      <span>
+        <img className="review-avatar" src={VillagerIcon}/>
+        <span>{user}</span>
+      </span>
+      <h3>{title}</h3>
       <p>{description}</p>
-      <p>{rating}</p>
-    </li>
-  );
-};
+      <p>Rating: {rating}</p>
+    </div>
+  )
+}
 
 export default ReviewTile;

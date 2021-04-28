@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import AnimalTile from './AnimalTile'
 import IndexBlathers from '../../../assets/images/index-blathers.png'
+import NewAnimalTile from './NewAnimalTile'
 
 const AnimalIndex = (props) => {
   const [animals, setAnimals] = useState([])
@@ -43,6 +44,7 @@ const AnimalIndex = (props) => {
         </div>
       </div>
       <div className="grid-x grid-margin-x">
+        <NewAnimalTile/>
         {animalList}
       </div>
     </div>

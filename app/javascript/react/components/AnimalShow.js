@@ -7,8 +7,9 @@ const AnimalShow = (props) => {
     name: "",
     body: "",
     rating: 0,
-    reviews: [],
-  });
+    photo_path: "",
+    reviews: []
+  })
   const [userId, setUserId] = useState(null);
 
   const submittedHandler = (review) => {
@@ -62,12 +63,22 @@ const AnimalShow = (props) => {
   }, []);
 
   return (
-    <div>
-      <h1>{animal.name}</h1>
-      <p>{animal.rating}</p>
-      <p>{animal.body}</p>
-      <AnimalReviewForm submittedHandler={submittedHandler} />
-      <ReviewList reviews={animal.reviews} />
+    <div className="grid-container">
+      <div className="grid-x">
+        <div className="cell small-12 medium-6">
+          <img className="animal-photo" src={animal.photo_path.url} alt="Photo"/>
+          <h1>{animal.name}</h1>
+          <p>{animal.body}</p>
+          <div className="card ratings-container">
+            <p>The Blabber average animal rating:</p>
+            <p>{animal.rating}</p>
+          </div>
+          <AnimalReviewForm submittedHandler={submittedHandler} />
+        </div>
+        <div className="cell small-12 medium-6">
+          <ReviewList reviews={animal.reviews}/>
+        </div>
+      </div>
     </div>
   );
 };
