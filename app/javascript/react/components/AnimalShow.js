@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AnimalReviewForm from "./AnimalReviewForm";
 import ReviewList from "./reviews/ReviewList";
+import _ from "lodash"
 
 const AnimalShow = (props) => {
   const [animal, setAnimal] = useState({
@@ -52,11 +53,34 @@ const AnimalShow = (props) => {
         throw new Error(errorMessage);
       }
       const newReview = await response.json();
-      setAnimal({ ...animal, ["reviews"]: animal.reviews.concat(newReview) });
+      setAnimal({
+        ...animal,
+        ["reviews"]: animal.reviews.concat(newReview)
+      });
     } catch (error) {
       console.error(`Error in Fetch: ${error.message}`);
     }
   };
+
+  const deleteReview = async (reviewId) => {
+    try {
+      const response = await fetch(`/api/v1/animals/${animal.id}/reviews/${reviewId}`, {
+        credentials: "same-origin",
+        method: "DELETE",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        }
+      })
+      if (!response.ok) {
+        const errorMessage = `${response.status} (${response.statusText})`;
+        throw new Error(errorMessage);
+      }
+      fetchAnimal()
+    } catch(err) {
+      console.error(err)
+    }
+  }
 
   useEffect(() => {
     fetchAnimal();
@@ -76,7 +100,7 @@ const AnimalShow = (props) => {
           <AnimalReviewForm submittedHandler={submittedHandler} />
         </div>
         <div className="cell small-12 medium-6">
-          <ReviewList reviews={animal.reviews} animal={animal.id}/>
+          <ReviewList reviews={animal.reviews} animal={animal.id} deleteReview={deleteReview}/>
         </div>
       </div>
     </div>
