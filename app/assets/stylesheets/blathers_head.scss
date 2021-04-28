@@ -1,0 +1,12 @@
+@import 'color';
+
+.head {
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  opacity: 0.5;
+}
+
+.selected {
+  opacity: 1;
+}

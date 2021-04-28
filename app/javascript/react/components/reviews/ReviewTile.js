@@ -17,4 +17,4 @@ const ReviewTile = props => {
   )
 }
 
-export default ReviewTile
+export default ReviewTile;
