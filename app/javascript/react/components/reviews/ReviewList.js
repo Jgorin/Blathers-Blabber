@@ -1,8 +1,8 @@
-import React from "react";
-import ReviewTile from "./ReviewTile";
+import React from "react"
+import ReviewTile from "./ReviewTile"
 
 const ReviewList = (props) => {
-  const { reviews } = props;
+  const { reviews } = props
 
   let reviewList = reviews.map((review) => {
     return (
@@ -13,15 +13,15 @@ const ReviewList = (props) => {
         rating={review.rating}
         user="placeholder person"
       />
-    );
-  });
+    )
+  })
 
   return (
     <div>
       <h2>Reviews:</h2>
       {reviewList}
     </div>
-  );
-};
+  )
+}
 
-export default ReviewList;
+export default ReviewList
