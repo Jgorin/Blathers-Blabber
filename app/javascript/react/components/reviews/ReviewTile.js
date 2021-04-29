@@ -1,8 +1,9 @@
 import React from "react"
 import VillagerIcon from "../../../../assets/images/villager.png"
+import Vote from "../Vote"
 
 const ReviewTile = props => {
-  const { title, description, rating, user } = props
+  const { animalId, reviewId, title, description, rating, user } = props
 
   return(
     <div className="callout">
@@ -13,6 +14,7 @@ const ReviewTile = props => {
       <h3>{title}</h3>
       <p>{description}</p>
       <p>Rating: {rating}</p>
+      <Vote isPositive="true" reviewId={reviewId} animalId={animalId} userId={user.id}/>
     </div>
   )
 }
