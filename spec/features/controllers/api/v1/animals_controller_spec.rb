@@ -26,7 +26,6 @@ RSpec.describe Api::V1::AnimalsController, type: :controller do
     user: user1
   )}
 
-
   describe "GET#index" do
     it "should return a list of all the animals" do
       get :index
@@ -42,7 +41,6 @@ RSpec.describe Api::V1::AnimalsController, type: :controller do
       expect(returned_json["animals"][1]["name"]).to eq "penguin"
       expect(returned_json["animals"][1]["body"]).to eq "frosty"
       expect(returned_json["animals"][1]["rating"]).to eq 4.8
-
     end
   end
 
