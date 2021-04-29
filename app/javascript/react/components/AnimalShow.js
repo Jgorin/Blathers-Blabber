@@ -13,6 +13,7 @@ const AnimalShow = props => {
   })
 
   const [currentUser, setCurrentUser] = useState({
+    id: null,
     username: "",
     profile_photo: "",
     role: ""
@@ -37,6 +38,7 @@ const AnimalShow = props => {
         ["reviews"]: responseBody.animal.reviews
       })
       setCurrentUser({
+        id: responseBody.animal.current_user.id,
         username: responseBody.animal.current_user.username,
         profile_photo: responseBody.animal.current_user.profile_photo,
         role: responseBody.animal.current_user.role
@@ -106,6 +108,16 @@ const AnimalShow = props => {
     }
   }
 
+  const addVote = (vote) => {
+    let reviews = animal.reviews
+    let review = reviews.filter(review => review.id === vote.review.id)[0]
+    
+  }
+
+  useEffect(() => {
+    fetchAnimal()
+  }, [])
+
   return (
     <div className="grid-container">
       <div className="grid-x">
@@ -129,6 +141,7 @@ const AnimalShow = props => {
             animal={animal.id}
             deleteReview={deleteReview}
             currentUser={currentUser}
+            addVote={addVote}
           />
         </div>
       </div>
