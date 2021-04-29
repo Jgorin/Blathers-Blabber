@@ -3,6 +3,8 @@
 @font-face {
   font-family: 'FinkHeavy';    
   src: asset-path(FinkHeavy) format("opentype");
+  src: font_url('FinkHeavy.otf'); 
+  src: font-url('FinkHeavy.otf'); 
 }
 
 h1, h2, h3 {
@@ -15,7 +17,7 @@ body {
   background-color: $background;
 }
 
-a {
+nav a {
   color: $ac-yellow;
   transition: color 0.1s ease-in;
 
