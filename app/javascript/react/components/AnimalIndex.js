@@ -5,6 +5,7 @@ import NewAnimalTile from "./NewAnimalTile"
 
 const AnimalIndex = props => {
   const [animals, setAnimals] = useState([])
+  let audio = new Audio("/animalese.wav") 
 
   const fetchAnimals = async () => {
     try {
@@ -41,7 +42,7 @@ const AnimalIndex = props => {
     <div className="grid-container">
       <div className="grid-x grid-margin-x">
         <div className="cell small-6 medium-4">
-          <img src={IndexBlathers} alt="blathers" className="index-blathers" />
+          <img src={IndexBlathers} alt="blathers" className="index-blathers" onClick={() => audio.play()}/>
         </div>
         <div className="cell small-6 medium-8">
           <h1>Welcome to Blathers' Blabber!</h1>

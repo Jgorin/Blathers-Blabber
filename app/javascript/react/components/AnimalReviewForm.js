@@ -11,6 +11,8 @@ const AnimalReviewForm = props => {
     rating: 0
   })
 
+  let audio = new Audio("/animalese.wav")
+
   const validFormSubmission = () => {
     let submitErrors = {}
     const requiredFields = ["title", "description"]
@@ -47,6 +49,7 @@ const AnimalReviewForm = props => {
   const onSubmitHandler = event => {
     event.preventDefault()
     if (validFormSubmission()) {
+      audio.play()
       props.submittedHandler(animalReview)
       setAnimalReview({
         title: "",
@@ -108,6 +111,7 @@ const AnimalReviewForm = props => {
           <button className="button" onClick={clearForm}>
             Clear
           </button>
+          {/* <audio src={Animalese} autoPlay="false"></audio> */}
           <input className="button" type="submit" value="Submit" />
         </div>
       </form>
