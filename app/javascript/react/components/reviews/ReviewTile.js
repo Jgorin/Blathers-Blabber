@@ -1,5 +1,4 @@
 import React from "react"
-import VillagerIcon from "../../../../assets/images/villager.png"
 
 const ReviewTile = props => {
   const { title, description, rating, postedUser, deleteReview, currentUser } = props
