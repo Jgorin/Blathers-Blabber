@@ -1,11 +1,10 @@
-import React from "react";
-import ReviewTile from "./ReviewTile";
+import React from "react"
+import ReviewTile from "./ReviewTile"
 
-const ReviewList = (props) => {
-  const { reviews, animal, deleteReview } = props;
+const ReviewList = props => {
+  const { reviews, animal, deleteReview, currentUser } = props
 
-  let reviewList = reviews.map((review) => {
-    debugger
+  let reviewList = reviews.map(review => {
     return (
       <ReviewTile
         key={review.id}
@@ -13,17 +12,18 @@ const ReviewList = (props) => {
         description={review.description}
         rating={review.rating}
         deleteReview={() => deleteReview(review.id, animal.id)}
-        user={review.user_id}
+        postedUser={review.user}
+        currentUser={currentUser}
       />
-    );
-  });
+    )
+  })
 
   return (
     <div>
       <h2>Reviews:</h2>
       {reviewList}
     </div>
-  );
-};
+  )
+}
 
-export default ReviewList;
+export default ReviewList

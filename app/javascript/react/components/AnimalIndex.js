@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import AnimalTile from './AnimalTile'
-import IndexBlathers from '../../../assets/images/index-blathers.png'
-import NewAnimalTile from './NewAnimalTile'
+import React, { useState, useEffect } from "react"
+import AnimalTile from "./AnimalTile"
+import IndexBlathers from "../../../assets/images/index-blathers.png"
+import NewAnimalTile from "./NewAnimalTile"
 
-const AnimalIndex = (props) => {
+const AnimalIndex = props => {
   const [animals, setAnimals] = useState([])
 
   const fetchAnimals = async () => {
@@ -12,10 +12,10 @@ const AnimalIndex = (props) => {
       if (!response.ok) {
         const errorMessage = `${response.status} (${response.statusText})`
         const error = new Error(errorMessage)
-        throw (error)
+        throw error
       }
       const responseBody = await response.json()
-      setAnimals(responseBody)
+      setAnimals(responseBody.animals)
     } catch (err) {
       console.error("Error in fetch!")
       console.error(err)
@@ -26,9 +26,14 @@ const AnimalIndex = (props) => {
     fetchAnimals()
   }, [])
 
-  const animalList = animals.map((animal) => {
-    return(
-      <AnimalTile key={animal.id} id={animal.id} name={animal.name} photo={animal.photo_path.url} />
+  const animalList = animals.map(animal => {
+    return (
+      <AnimalTile
+        key={animal.id}
+        id={animal.id}
+        name={animal.name}
+        photo={animal.photo_path.url}
+      />
     )
   })
 
@@ -36,7 +41,7 @@ const AnimalIndex = (props) => {
     <div className="grid-container">
       <div className="grid-x grid-margin-x">
         <div className="cell small-6 medium-4">
-          <img src={IndexBlathers} alt="blathers" className="index-blathers"/>
+          <img src={IndexBlathers} alt="blathers" className="index-blathers" />
         </div>
         <div className="cell small-6 medium-8">
           <h1>Welcome to Blathers' Blabber!</h1>
@@ -44,7 +49,7 @@ const AnimalIndex = (props) => {
         </div>
       </div>
       <div className="grid-x grid-margin-x">
-        <NewAnimalTile/>
+        <NewAnimalTile />
         {animalList}
       </div>
     </div>
