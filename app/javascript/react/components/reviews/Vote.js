@@ -3,31 +3,7 @@ import UpVote from "../../../../assets/images/up_vote.png"
 import DownVote from "../../../../assets/images/down_vote.png"
 
 const Vote = props => {
-  const { isUpVote, animalId, reviewId, userId, addVote } = props
-
-  const postVote = async() => {
-    try{
-      const response = await fetch(`/api/v1/animals/${animalId}/reviews/${reviewId}/votes`, {
-        credentials: "same-origin",
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify( { isUpVote: isUpVote, userId: userId, reviewId: reviewId } )
-      })
-      if (!response.ok) {
-        const errorMessage = `${response.status} (${response.statusText})`
-        throw new Error(errorMessage)
-      }
-      const parsedResponse = await response.json()
-      addVote(parsedResponse.vote)
-    }
-    catch(err){
-      console.log("error in fetch")
-      console.log(err)
-    }
-  }
+  const { isUpVote, className, postVote } = props
 
   let image
   
@@ -38,11 +14,17 @@ const Vote = props => {
     image = DownVote
   }
 
+  const postVoteWrapper = () => {
+    if (postVote != null) {
+    postVote(isUpVote)
+    }
+  }
+
   return(
     <img
       src={image}
-      className="voteIcon"
-      onClick={postVote}
+      className={className}
+      onClick={postVoteWrapper}
       alt="button"
     />
   )

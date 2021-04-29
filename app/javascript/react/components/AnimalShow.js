@@ -110,8 +110,13 @@ const AnimalShow = props => {
 
   const addVote = (vote) => {
     let reviews = animal.reviews
-    let review = reviews.filter(review => review.id === vote.review.id)[0]
-    
+    let review = reviews.filter(review => review.id == vote.review.id)
+    review = review[0]
+    review.votes.push(vote)
+    setAnimal({
+      ...animal,
+      ["reviews"]: reviews
+    })
   }
 
   return (
