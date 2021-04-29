@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2021_04_28_184446) do
   end
 
   create_table "votes", force: :cascade do |t|
-    t.boolean "isPositive", null: false
+    t.boolean "isUpVote", null: false
     t.bigint "user_id"
     t.bigint "review_id"
     t.datetime "created_at", null: false

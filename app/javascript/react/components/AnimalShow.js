@@ -33,6 +33,7 @@ const AnimalShow = props => {
       }
 
       const responseBody = await response.json()
+      debugger
       setAnimal({
         ...responseBody.animal,
         ["reviews"]: responseBody.animal.reviews

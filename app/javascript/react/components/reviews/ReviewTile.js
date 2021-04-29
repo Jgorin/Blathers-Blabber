@@ -1,6 +1,6 @@
 import React from "react"
 import VillagerIcon from "../../../../assets/images/villager.png"
-import Vote from "../Vote"
+import Vote from "./Vote"
 
 const ReviewTile = props => {
   const { reviewId, title, description, rating, postedUser, deleteReview, currentUser, animalId, addVote } = props
@@ -26,7 +26,8 @@ const ReviewTile = props => {
       <p>{description}</p>
       <p>Rating: {rating}</p>
       <p>Do you like this review?</p>
-      <Vote isPositive={true} reviewId={reviewId} animalId={animalId} userId={currentUser.id} addVote={addVote}/>
+      <Vote isUpVote={true} reviewId={reviewId} animalId={animalId} userId={currentUser.id} addVote={addVote}/>
+      <Vote isUpVote={false} reviewId={reviewId} animalId={animalId} userId={currentUser.id} addVote={addVote}/>
     </div>
   )
 }
