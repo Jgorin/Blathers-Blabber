@@ -114,10 +114,6 @@ const AnimalShow = props => {
     
   }
 
-  useEffect(() => {
-    fetchAnimal()
-  }, [])
-
   return (
     <div className="grid-container">
       <div className="grid-x">

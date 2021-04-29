@@ -19,7 +19,7 @@ const ReviewList = props => {
         deleteReview={handleDeleteReview}
         postedUser={review.user}
         currentUser={currentUser}
-        animalId={animal}
+        animalId={animal.id}
         addVote={addVote}
       />
     )

@@ -1,5 +1,6 @@
 class VoteSerializer < ActiveModel::Serializer
-  attributes :id
-  belongs_to :user
+  attributes :id, :user, :review
+  
   belongs_to :review
+  belongs_to :user
 end

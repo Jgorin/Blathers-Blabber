@@ -3,7 +3,7 @@ class Api::V1::VotesController < ApiController
     vote = Vote.new( 
       user_id: params[:userId], 
       review_id: params[:reviewId], 
-      isPositive: params[:isPositive]
+      isUpVote: params[:isUpVote]
     )
     if vote.save
       render json: vote
