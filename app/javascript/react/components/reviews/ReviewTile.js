@@ -2,22 +2,12 @@ import React from "react"
 import VillagerIcon from "../../../../assets/images/villager.png"
 
 const ReviewTile = props => {
-  const {title, description, rating, postedUser, deleteReview, currentUser } = props
+  const { title, description, rating, postedUser, deleteReview, currentUser } = props
 
   const clickHandler = (event) => {
     event.preventDefault()
     deleteReview()
   }
-
-  // const checkPostedUser = () => {
-  //   if (postedUser != null) {
-  //     return (
-
-  //     )
-  //   } else {
-  //     return null
-  //   }
-  // }
 
   const deleteButton = () => {
     if (currentUser.role === "admin"){
@@ -34,7 +24,7 @@ const ReviewTile = props => {
       <h3>{title}</h3>
       <p>{description}</p>
       <p>Rating: {rating}</p>
-      {/* {deleteButton()} */}
+      {deleteButton()}
     </div>
   )
 }

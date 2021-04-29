@@ -46,6 +46,10 @@ const AnimalShow = props => {
     }
   }
 
+  useEffect(() => {
+    fetchAnimal()
+  }, [])
+
   const postReview = async formPayload => {
     try {
       let animalId = props.match.params.id
@@ -91,15 +95,16 @@ const AnimalShow = props => {
         const errorMessage = `${response.status} (${response.statusText})`
         throw new Error(errorMessage)
       }
-      fetchAnimal()
+      const responseBody = await response.json()
+      setAnimal({
+        ...animal,
+        ["reviews"]: responseBody.reviews
+      })
+
     } catch (err) {
       console.error(err)
     }
   }
-
-  useEffect(() => {
-    fetchAnimal()
-  }, [])
 
   return (
     <div className="grid-container">
