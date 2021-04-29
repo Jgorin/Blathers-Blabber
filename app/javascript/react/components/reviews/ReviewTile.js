@@ -2,7 +2,7 @@ import React from "react"
 import Vote from "./Vote"
 
 const ReviewTile = props => {
-  const { title, description, rating, postedUser, deleteReview, currentUser, addVote } = props
+  const { title, description, rating, postedUser, deleteReview, currentUser, addVote, reviewId, animalId } = props
 
   const clickHandler = (event) => {
     event.preventDefault()
