@@ -1,19 +1,17 @@
 import React from "react"
-import VillagerIcon from "../../../../assets/images/villager.png"
 import Vote from "./Vote"
 
 const ReviewTile = props => {
-  const { reviewId, title, description, rating, postedUser, deleteReview, currentUser, animalId, addVote } = props
+  const { title, description, rating, postedUser, deleteReview, currentUser, addVote } = props
 
   const clickHandler = (event) => {
     event.preventDefault()
     deleteReview()
   }
-  
-  const deleteButton = () => {
-    if (currentUser.role === "admin"){
-      return <button className="button alert" onClick={clickHandler} >Delete</button>
-    }
+
+  let deleteButton
+  if (currentUser.role === "admin"){
+    deleteButton = <button className="button alert" onClick={clickHandler} >Delete</button>
   }
 
   return(
@@ -28,6 +26,7 @@ const ReviewTile = props => {
       <p>Do you like this review?</p>
       <Vote isUpVote={true} reviewId={reviewId} animalId={animalId} userId={currentUser.id} addVote={addVote}/>
       <Vote isUpVote={false} reviewId={reviewId} animalId={animalId} userId={currentUser.id} addVote={addVote}/>
+      {deleteButton}
     </div>
   )
 }

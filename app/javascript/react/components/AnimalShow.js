@@ -33,7 +33,6 @@ const AnimalShow = props => {
       }
 
       const responseBody = await response.json()
-      debugger
       setAnimal({
         ...responseBody.animal,
         ["reviews"]: responseBody.animal.reviews
@@ -48,6 +47,10 @@ const AnimalShow = props => {
       console.error(`Error in Fetch: ${error.message}`)
     }
   }
+
+  useEffect(() => {
+    fetchAnimal()
+  }, [])
 
   const postReview = async formPayload => {
     try {
@@ -94,7 +97,12 @@ const AnimalShow = props => {
         const errorMessage = `${response.status} (${response.statusText})`
         throw new Error(errorMessage)
       }
-      fetchAnimal()
+      const responseBody = await response.json()
+      setAnimal({
+        ...animal,
+        ["reviews"]: responseBody.reviews
+      })
+
     } catch (err) {
       console.error(err)
     }
@@ -105,10 +113,6 @@ const AnimalShow = props => {
     let review = reviews.filter(review => review.id === vote.review.id)[0]
     
   }
-
-  useEffect(() => {
-    fetchAnimal()
-  }, [])
 
   return (
     <div className="grid-container">

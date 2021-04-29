@@ -5,6 +5,10 @@ const ReviewList = props => {
   const { reviews, animal, deleteReview, currentUser, addVote } = props
 
   let reviewList = reviews.map(review => {
+    const handleDeleteReview = () => {
+      deleteReview(review.id)
+    }
+
     return (
       <ReviewTile
         key={review.id}
@@ -12,7 +16,7 @@ const ReviewList = props => {
         reviewId={review.id}
         description={review.description}
         rating={review.rating}
-        deleteReview={() => deleteReview(review.id, animal.id)}
+        deleteReview={handleDeleteReview}
         postedUser={review.user}
         currentUser={currentUser}
         animalId={animal}

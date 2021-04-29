@@ -16,8 +16,9 @@ class Api::V1::ReviewsController < ApiController
 
   def destroy
     review = Review.find(params[:id])
+    animal = Animal.find(params[:animal_id])
     if review.destroy
-      render json: review
+      render json: animal.reviews
     else
       render json: { error: review.errors.full_messages }
     end

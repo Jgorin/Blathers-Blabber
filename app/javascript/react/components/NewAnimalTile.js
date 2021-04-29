@@ -3,7 +3,7 @@ import Animals from '../../../assets/images/animals.png'
 
 const NewAnimalTile = () => {
   return (
-    <div className="cell small-6 medium-4 auto">
+    <div className="cell small-6 medium-4">
       <a href="/animals/new">
         <div className="card animal-card">
           <img className="new-animals" src={Animals} alt="animal image"/>
