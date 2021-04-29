@@ -1,19 +1,22 @@
 import React from "react"
 import ReviewTile from "./ReviewTile"
 
-const ReviewList = (props) => {
-  const { reviews, animalId, user } = props
+const ReviewList = props => {
+  const { reviews, animal, deleteReview, currentUser, addVote } = props
 
-  let reviewList = reviews.map((review) => {
+  let reviewList = reviews.map(review => {
     return (
       <ReviewTile
         key={review.id}
-        reviewId={review.id}
-        animalId={animalId}
         title={review.title}
+        reviewId={review.id}
         description={review.description}
         rating={review.rating}
-        user="placeholder person"
+        deleteReview={() => deleteReview(review.id, animal.id)}
+        postedUser={review.user}
+        currentUser={currentUser}
+        animalId={animal}
+        addVote={addVote}
       />
     )
   })

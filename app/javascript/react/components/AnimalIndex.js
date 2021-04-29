@@ -3,7 +3,7 @@ import AnimalTile from "./AnimalTile"
 import IndexBlathers from "../../../assets/images/index-blathers.png"
 import NewAnimalTile from "./NewAnimalTile"
 
-const AnimalIndex = (props) => {
+const AnimalIndex = props => {
   const [animals, setAnimals] = useState([])
 
   const fetchAnimals = async () => {
@@ -26,7 +26,7 @@ const AnimalIndex = (props) => {
     fetchAnimals()
   }, [])
 
-  const animalList = animals.map((animal) => {
+  const animalList = animals.map(animal => {
     return (
       <AnimalTile
         key={animal.id}

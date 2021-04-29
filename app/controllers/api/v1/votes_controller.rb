@@ -1,6 +1,10 @@
 class Api::V1::VotesController < ApiController
   def create
-    vote = Vote.new(vote_params)
+    vote = Vote.new( 
+      user_id: params[:userId], 
+      review_id: params[:reviewId], 
+      isPositive: params[:isPositive]
+    )
     if vote.save
       render json: vote
     else
@@ -9,9 +13,4 @@ class Api::V1::VotesController < ApiController
   end
 
   private
-
-    def vote_params
-      binding.pry
-      params.require(:vote).permit(:isPositive, :userId, :reviewId)
-    end
 end

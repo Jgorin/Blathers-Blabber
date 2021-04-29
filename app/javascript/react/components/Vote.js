@@ -1,11 +1,12 @@
 import React from "react"
+import UpVote from '../../../assets/images/up_vote.png'
+import DownVote from '../../../assets/images/down_vote.png'
 
 const Vote = props => {
-  const { isPositive, animalId, reviewId, userId } = props
+  const { isPositive, animalId, reviewId, userId, addVote } = props
 
   const postVote = async() => {
     try{
-      debugger
       const response = await fetch(`/api/v1/animals/${animalId}/reviews/${reviewId}/votes`, {
         credentials: "same-origin",
         method: "POST",
@@ -21,6 +22,7 @@ const Vote = props => {
       }
       const parsedResponse = await response.json()
       debugger
+      addVote(parsedResponse.vote)
     }
     catch(err){
       console.log("error in fetch")
@@ -28,16 +30,21 @@ const Vote = props => {
     }
   }
 
-  let label = null
+  let image = null
+  
   if(isPositive){
-    label = "Up Vote"
+    image = UpVote
   }
-  else{
-    label = "Down Vote"
+  else {
+    image = DownVote
   }
 
   return(
-    <p className="button" onClick={postVote}>{label}</p>
+    <img
+      src={image}
+      className="voteIcon"
+      onClick={postVote}
+    />
   )
 }
 
