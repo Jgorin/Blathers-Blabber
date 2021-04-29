@@ -9,10 +9,9 @@ const ReviewTile = props => {
     deleteReview()
   }
 
-  const deleteButton = () => {
-    if (currentUser.role === "admin"){
-      return <button className="button alert" onClick={clickHandler} >Delete</button>
-    }
+  let deleteButton
+  if (currentUser.role === "admin"){
+    deleteButton = <button className="button alert" onClick={clickHandler} >Delete</button>
   }
 
   return(
@@ -24,7 +23,7 @@ const ReviewTile = props => {
       <h3>{title}</h3>
       <p>{description}</p>
       <p>Rating: {rating}</p>
-      {deleteButton()}
+      {deleteButton}
     </div>
   )
 }
