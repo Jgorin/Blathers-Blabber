@@ -13,6 +13,7 @@ const AnimalShow = props => {
   })
 
   const [currentUser, setCurrentUser] = useState({
+    id: null,
     username: "",
     profile_photo: "",
     role: ""
@@ -37,6 +38,7 @@ const AnimalShow = props => {
         ["reviews"]: responseBody.animal.reviews
       })
       setCurrentUser({
+        id: responseBody.animal.current_user.id,
         username: responseBody.animal.current_user.username,
         profile_photo: responseBody.animal.current_user.profile_photo,
         role: responseBody.animal.current_user.role
@@ -106,6 +108,17 @@ const AnimalShow = props => {
     }
   }
 
+  const addVote = (vote) => {
+    let reviews = animal.reviews
+    let review = reviews.filter(review => review.id == vote.review.id)
+    review = review[0]
+    review.votes.push(vote)
+    setAnimal({
+      ...animal,
+      ["reviews"]: reviews
+    })
+  }
+
   return (
     <div className="grid-container">
       <div className="grid-x">
@@ -117,10 +130,6 @@ const AnimalShow = props => {
           />
           <h1>{animal.name}</h1>
           <p>{animal.body}</p>
-          <div className="card ratings-container">
-            <p>The Blabber average animal rating:</p>
-            <p>{animal.rating}</p>
-          </div>
           <AnimalReviewForm submittedHandler={submittedHandler} />
         </div>
         <div className="cell small-12 medium-6">
@@ -129,6 +138,7 @@ const AnimalShow = props => {
             animal={animal.id}
             deleteReview={deleteReview}
             currentUser={currentUser}
+            addVote={addVote}
           />
         </div>
       </div>

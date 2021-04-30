@@ -3,8 +3,7 @@ require "rails_helper"
 RSpec.describe Api::V1::ReviewsController, type: :controller do
   let!(:first_animal) { Animal.create(
     name: "hippo",
-    body: "fat",
-    rating: 5.0,
+    body: "fat"
   ) }
 
   let!(:user1) { User.create(
