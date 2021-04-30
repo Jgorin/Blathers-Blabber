@@ -5,7 +5,8 @@ class Api::V1::VotesController < ApiController
       review_id: params[:reviewId], 
       isUpVote: params[:isUpVote]
     )
-    if vote.save
+    
+    if vote.save     
       render json: vote
     else
       render json: { errors: vote.errors.full_messages.to_sentence }

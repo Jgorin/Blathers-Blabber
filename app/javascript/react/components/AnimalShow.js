@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import AnimalReviewForm from "./AnimalReviewForm"
 import ReviewList from "./reviews/ReviewList"
 import _ from "lodash"
+import MysteryAnimal from "../../../assets/images/mystery-animal.jpg"
 
 const AnimalShow = props => {
   const [animal, setAnimal] = useState({
@@ -110,25 +111,29 @@ const AnimalShow = props => {
 
   const addVote = (vote) => {
     let reviews = animal.reviews
-    let review = reviews.filter(review => review.id === vote.review.id)[0]
-    
+    let review = reviews.filter(review => review.id == vote.review.id)
+    review = review[0]
+    review.votes.push(vote)
+    setAnimal({
+      ...animal,
+      ["reviews"]: reviews
+    })
+  }
+
+  let animalImg
+  if(animal.photo_path.url === null){
+    animalImg = <img className="animal-photo" src={MysteryAnimal}/>
+  } else {
+    animalImg = <img className="animal-photo" src={animal.photo_path.url}/>
   }
 
   return (
     <div className="grid-container">
       <div className="grid-x">
         <div className="cell small-12 medium-6">
-          <img
-            className="animal-photo"
-            src={animal.photo_path.url}
-            alt="Photo"
-          />
+          {animalImg}
           <h1>{animal.name}</h1>
           <p>{animal.body}</p>
-          <div className="card ratings-container">
-            <p>The Blabber average animal rating:</p>
-            <p>{animal.rating}</p>
-          </div>
           <AnimalReviewForm submittedHandler={submittedHandler} />
         </div>
         <div className="cell small-12 medium-6">

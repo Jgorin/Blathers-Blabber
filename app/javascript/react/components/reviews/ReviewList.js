@@ -20,6 +20,7 @@ const ReviewList = props => {
         postedUser={review.user}
         currentUser={currentUser}
         animalId={animal.id}
+        votes={review.votes}
         addVote={addVote}
       />
     )
