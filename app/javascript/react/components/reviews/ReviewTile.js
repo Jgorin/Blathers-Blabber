@@ -1,5 +1,6 @@
 import React from "react"
 import Vote from "./Vote"
+import Villager from "../../../../assets/images/villager.png"
 
 const ReviewTile = props => {
   const {
@@ -27,6 +28,13 @@ const ReviewTile = props => {
         Delete
       </button>
     )
+  }
+
+  let reviewAvatar
+  if(postedUser.profile_photo.url === null){
+    reviewAvatar = <img className="review-avatar" src={Villager}/>
+  } else {
+    reviewAvatar = <img className="review-avatar" src={postedUser.profile_photo.url}/>
   }
 
   const postVote = async (isUpVote) => {
@@ -88,7 +96,7 @@ const ReviewTile = props => {
   return (
     <div className="callout">
       <span>
-        <img className="review-avatar" src={postedUser.profile_photo.url} />
+        {reviewAvatar}
         <span>{postedUser.username}</span>
       </span>
       <h3>{title}</h3>
@@ -109,7 +117,9 @@ const ReviewTile = props => {
         />
         {downVoteCount}
       </span>
-      {deleteButton}
+      <div>
+        {deleteButton}
+      </div>
     </div>
   )
 }
