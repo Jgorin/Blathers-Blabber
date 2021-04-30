@@ -2,6 +2,15 @@ require 'rails_helper'
 
 feature 'user adds a new animal' do
   scenario 'user fills out form and clicks add animal' do
+    user = User.create!(
+      username: "josh",
+      password: "111111",
+      email: "jgorin@conncoll.edu",
+      role: "admin"
+    )
+
+    login_as(user, :scope => :user)
+
     visit new_animal_path
 
     fill_in "Name", with: "Panda"
@@ -17,6 +26,15 @@ feature 'user adds a new animal' do
   end
 
   scenario 'user does not fill form and tries to submit' do
+    user = User.create!(
+      username: "josh",
+      password: "111111",
+      email: "jgorin@conncoll.edu",
+      role: "admin"
+    )
+
+    login_as(user, :scope => :user)
+
     visit new_animal_path
 
     click_button 'Add Animal'

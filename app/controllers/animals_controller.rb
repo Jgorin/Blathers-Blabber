@@ -1,4 +1,6 @@
 class AnimalsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @animal = Animal.new
   end

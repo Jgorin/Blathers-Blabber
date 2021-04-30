@@ -1,6 +1,8 @@
 class Api::V1::ReviewsController < ApiController
-  def create
+  before_action :authenticate_user!
+  before_action :authorize_user, except: [:create]
 
+  def create
     review = Review.new(review_params)
     review.user = current_user
     review.animal_id = params["animal_id"]
@@ -12,9 +14,25 @@ class Api::V1::ReviewsController < ApiController
     end
   end
 
+  def destroy
+    review = Review.find(params[:id])
+    animal = Animal.find(params[:animal_id])
+    if review.destroy
+      render json: animal.reviews
+    else
+      render json: { error: review.errors.full_messages }
+    end
+  end
+
   private
 
   def review_params
     params.require(:review).permit(:title, :description, :rating)
+  end
+
+  def authorize_user
+    if !user_signed_in? || !current_user.admin?
+      raise ActionController::RoutingError.new("Not Found")
+    end
   end
 end

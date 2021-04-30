@@ -1,6 +1,6 @@
 # Blathers' Blabber
 
-[![Codeship Status for Jgorin/Blathers-Blabber](https://app.codeship.com/projects/9edc125d-980e-4a43-8987-1fff786abacb/status?branch=master)](https://app.codeship.com/projects/442458)
+[![Codeship Status for Jgorin/Blathers-Blabber](https://app.codeship.com/projects/9edc125d-980e-4a43-8987-1fff786abacb/status?branch=main)](https://app.codeship.com/projects/442458)
 
 Welcome to Blathers' Blabber! Here you'll find the best animal ratings in town! Come one, come all, and see all our amazing animals on display. Then rate them. Wahoo!
 

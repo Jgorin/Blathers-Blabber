@@ -9,4 +9,9 @@ class User < ApplicationRecord
   validates :username, uniqueness: true, presence: true
 
   has_many :reviews
+  has_many :votes
+
+  def admin?
+    role == "admin"
+  end
 end
