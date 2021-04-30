@@ -3,8 +3,7 @@ require "rails_helper"
 RSpec.describe Api::V1::VotesController, type: :controller do
   let!(:first_animal) { Animal.create(
     name: "hippo",
-    body: "fat",
-    rating: 5.0,
+    body: "fat"
   ) }
 
   let!(:user1) { User.create(
@@ -24,29 +23,34 @@ RSpec.describe Api::V1::VotesController, type: :controller do
 
   describe "POST#create" do
     it "creates a new vote" do
-      post_json = {
-          isUpVote: true,
-          review: review,
-          user: user1
-      }
-
       sign_in(user1)
 
       prev_count = Vote.count
-      post(:create, params: { :animal_id => first_animal.id, :review_id => review.id, :user_id => user1.id, vote: post_json }, format: :json)
+      post(:create, 
+        params: { 
+          :animal_id => first_animal.id, 
+          :reviewId => review.id, 
+          :review_id => review.id, 
+          :userId => user1.id, 
+          :isUpVote => true
+        }, 
+        format: :json)
       expect(Vote.count).to eq(prev_count + 1)
     end
 
     it "returns the json of a the newly posted vote" do
-      post_json = {
-        isUpVote: true,
-        review: review,
-        user: user1
-      }
-
       sign_in(user1)
 
-      post(:create, params: { :animal_id => first_animal.id, :review_id => review.id, :user_id => user1.id, vote: post_json }, format: :json)
+      post(:create, 
+        params: { 
+          :animal_id => first_animal.id, 
+          :reviewId => review.id, 
+          :review_id => review.id, 
+          :userId => user1.id, 
+          :isUpVote => true
+        }, 
+        format: :json)
+
       returned_json = JSON.parse(response.body)
 
       expect(response.status).to eq 200

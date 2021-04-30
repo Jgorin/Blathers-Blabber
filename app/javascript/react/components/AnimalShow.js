@@ -130,10 +130,6 @@ const AnimalShow = props => {
           />
           <h1>{animal.name}</h1>
           <p>{animal.body}</p>
-          <div className="card ratings-container">
-            <p>The Blabber average animal rating:</p>
-            <p>{animal.rating}</p>
-          </div>
           <AnimalReviewForm submittedHandler={submittedHandler} />
         </div>
         <div className="cell small-12 medium-6">
